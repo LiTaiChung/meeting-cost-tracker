@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>會議成本計時器</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <p class="eyebrow">Meeting Cost Tracker</p>
+        <h1>每一場會議，都看得見代價</h1>
+        <p class="hero-copy">
+          設定參與人數與每小時成本區間，開始計時後，網站會即時換算這場會議已花掉多少錢。
+        </p>
+      </section>
+
+      <section class="dashboard">
+        <div class="panel control-panel">
+          <h2>會議設定</h2>
+
+          <label class="field">
+            <span>會議人頭</span>
+            <div class="stepper">
+              <button type="button" class="step-btn" data-step="-1" aria-label="減少人數">-</button>
+              <input id="attendees" type="number" min="1" value="6" />
+              <button type="button" class="step-btn" data-step="1" aria-label="增加人數">+</button>
+            </div>
+          </label>
+
+          <div class="field-group">
+            <label class="field">
+              <span>最低時薪（NTD）</span>
+              <input id="rateMin" type="number" min="0" step="10" value="500" />
+            </label>
+            <label class="field">
+              <span>最高時薪（NTD）</span>
+              <input id="rateMax" type="number" min="0" step="10" value="1200" />
+            </label>
+          </div>
+
+          <div class="preset-row" aria-label="常用時薪區間">
+            <button type="button" class="preset" data-min="300" data-max="800">一般內部</button>
+            <button type="button" class="preset" data-min="800" data-max="1800">主管會議</button>
+            <button type="button" class="preset" data-min="1500" data-max="3000">高階決策</button>
+          </div>
+
+          <div class="actions">
+            <button id="startBtn" type="button" class="primary">開始計時</button>
+            <button id="pauseBtn" type="button" class="secondary">暫停</button>
+            <button id="resetBtn" type="button" class="ghost">重設</button>
+          </div>
+        </div>
+
+        <div class="panel result-panel">
+          <div class="status-row">
+            <span id="statusBadge" class="status idle">尚未開始</span>
+            <span id="liveRate" class="live-rate">每分鐘 0 元</span>
+          </div>
+
+          <div class="timer-block">
+            <p class="label">已進行時間</p>
+            <div id="elapsedTime" class="elapsed">00:00:00</div>
+          </div>
+
+          <div class="cost-grid">
+            <article class="cost-card">
+              <p class="label">累積成本下限</p>
+              <p id="costMin" class="cost">NT$0</p>
+            </article>
+            <article class="cost-card accent">
+              <p class="label">累積成本上限</p>
+              <p id="costMax" class="cost">NT$0</p>
+            </article>
+          </div>
+
+          <div class="summary">
+            <p id="summaryLine">6 人會議，時薪區間 NT$500 - NT$1,200</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
